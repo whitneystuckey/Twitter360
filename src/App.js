@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { render } from '@testing-library/react';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello Steven!
         </p>
         <a
           className="App-link"
@@ -16,11 +17,34 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Click this totally safe link
         </a>
+        <Component message = "Hello...?"/>
+
       </header>
     </div>
   );
 }
+
+class Component extends React.Component{
+  
+  constructor(props){
+    super(props)
+    this.state = {age: 20, height: 6} 
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.message}
+        {this.state.age}
+        <div style = {{backgroundColor: "red"}} onClick={() => this.setState({age: this.state.age + 1})}>
+          button
+        </div>
+      </div>
+    );
+  }
+}
+
 
 export default App;
