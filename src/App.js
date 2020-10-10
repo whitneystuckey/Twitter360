@@ -12,6 +12,7 @@ function App() {
         <p>
           Hello Steven!
         </p>
+        <script src="dist/aframe-no-click-look-controls.min.js"></script>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -27,10 +28,10 @@ function App() {
 }
 
 class Component extends React.Component{
-  
+
   constructor(props){
     super(props)
-    this.state = {age: 20, height: 6} 
+    this.state = {age: 20, height: 6}
   }
 
   render() {
