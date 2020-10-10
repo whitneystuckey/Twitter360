@@ -1,8 +1,10 @@
 import 'aframe';
-import 'aframe-animation-component';
 import 'aframe-particle-system-component';
+import 'aframe-htmlembed-component'
+import 'aframe-html-shader'
 import 'babel-polyfill';
 import Skybox from './assets/Skyboxes/TimesSquare.jpg';
+import Ground from './assets/groundPlane.png'
 import PanelDesign from './assets/PanelDesign/PanelDesign.png';
 import {Entity, Scene} from 'aframe-react';
 import React from 'react';
@@ -54,15 +56,25 @@ class VRScene extends React.Component {
 
   render () {
     return (
-      <Scene renderer=
-      "antialias: true"
-      >
+	  <Scene 
+	  renderer="antialias: true"
+	  cursor="rayOrigin: mouse"
+	  >
+        {/*Skybox*/}
         <a-assets>
-          {/*Skybox*/}
           <img id="skyTexture" src={Skybox}/>
+          <img id="groundTexture" src={Ground}/>
           <img id="tweetTexture" src={PanelDesign}/>
         </a-assets>
-
+        <Entity
+          primitive="a-plane"
+          src="#groundTexture"
+          material={{opacity: 0.99}}
+          rotation="-90 0 0"
+          position="0 -8 0"
+          scale="25 25"
+          animation={"property: rotation; to: -90 360000 0; loop: true; dur: 1000000"}
+        />
         <Entity primitive="a-sky" src="#skyTexture" rotation="0 -130 0"/>
 
         {/*Tweet Panels*/}
@@ -71,18 +83,29 @@ class VRScene extends React.Component {
             <Entity
               primitive="a-plane"
               src="#tweetTexture"
-              material= {{opacity: 0.99}}
+              material={{opacity: 0.99}}
               rotation={rotation}
               position={position}
               scale="5 3"
-              event-set__mouseenter="scale: 1.2 1.2 1"
-              event-set__mouseleave="scale: 1 1 1"
-            />
+              events={{
+				  mouseenter: (eg) => eg.target.setAttribute("scale", "6. 4"),
+				  mouseleave: (eg) => eg.target.setAttribute("scale", "5. 3")
+				}}
+            >
+				
+			</Entity>
           ))
         }
+		{/* <Entity htmlembed={{}}>
+				<div style={{backgroundColor: "red", width: "100", height: "100"}}>Hello</div>
+			</Entity> */}
+
+		<Entity primitive="a-plane" rotation="-90 0 0" material={{shader: "html", target: "#htmlElement"}}></Entity>
       </Scene>
     );
   }
 }
+
+
 
 ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer'));
