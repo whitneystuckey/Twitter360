@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { render } from '@testing-library/react';
+
+console.log("here")
 
 function App() {
   return (
@@ -20,7 +21,6 @@ function App() {
           Click this totally safe link
         </a>
         <Component message = "Hello...?"/>
-
       </header>
     </div>
   );
