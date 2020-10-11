@@ -6,7 +6,8 @@ import "babel-polyfill";
 import TimesSquare from "./assets/Skyboxes/TimesSquare.jpg";
 import Rio from "./assets/Skyboxes/Rio.jpg";
 import UCF from "./assets/Skyboxes/UCF.jpg";
-import Ground from "./assets/groundPlane.png";
+import UrbanGround from "./assets/groundPlane.png";
+import BlackGoldGround from "./assets/groundPlaneBlackGold.png"
 import CityAmbience from "./assets/Ambience/new-york-street-ambience.wav";
 import UrbanPanelDesign from "./assets/Themes/Urban/PanelDesign.png";
 import NaturePanelDesign from "./assets/Themes/Nature/PanelDesign.png";
@@ -20,6 +21,7 @@ import { IoMdVolumeOff, IoMdVolumeHigh, IoMdArrowBack } from "react-icons/io";
 import { NYTweets } from "./assets/Tweets/TimeSquare";
 import { RioTweets } from "./assets/Tweets/Rio";
 import { UCFTweets } from "./assets/Tweets/UCF";
+import ReactDOM from "react-dom";
 
 { /* Set Panels rotation and position*/ }
 let planeRadius = 10;
@@ -81,14 +83,19 @@ class VRScene extends React.Component {
 			case "TimesSquare":
 				this.tweets = NYTweets;
 				this.skyBox = TimesSquare;
+				this.panel = UrbanPanelDesign;
+				this.platform = UrbanGround;
 				break;
 			case "UCF":
 				this.tweets = UCFTweets;
 				this.skyBox = UCF;
+				this.panel = BlackGoldPanelDesign;
+				this.platform = BlackGoldGround;
 				break;
 			case "Rio":
 				this.tweets = RioTweets;
 				this.skyBox = Rio;
+				this.panel = UrbanPanelDesign;
 				break;
 		}
 		this.setState({ tweets: this.tweets });
@@ -103,14 +110,14 @@ class VRScene extends React.Component {
 					{ /* Skybox and Ground*/ }
 					<a-assets>
 						<img id = "skyTexture" src = { this.skyBox } />
-						<img id = "groundTexture" src = { Ground } />
+						<img id = "groundTexture" src = { this.platform } />
 						{
 							this.state.tweets.map((tweet, index) => (<img id = { `img+${index}` } src = { tweet }></img>))
 						}
-						<img id = "panelTexture" src = { UrbanPanelDesign } />
-						<audio id = "ambience" src = { CityAmbience } />
+						<img id = "panelTexture" src = { this.panel } />
+						{/* <audio id = "ambience" src = { CityAmbience } /> */}
 					</a-assets>
-					<Entity
+					{ this.platform && (<Entity
 						primitive = "a-plane"
 						src = "#groundTexture"
 						material = {{ opacity: 0.99 }}
@@ -118,7 +125,7 @@ class VRScene extends React.Component {
 						position = "0 -9 0"
 						scale = "25 25"
 						animation = { "property: rotation; to: -90 360000 0; loop: true; dur: 1000000" }
-					/>
+					/>) }
 					<Entity primitive = "a-sky" src = "#skyTexture" rotation = "0 -130 0" />
 
 					{ /* Mouse-to-Movement Control*/ }
@@ -161,7 +168,7 @@ class VRScene extends React.Component {
 								id = { `panel+${index}` }
 								primitive = "a-plane"
 								src = "#panelTexture"
-								material = {{ opacity: 0.99, shader: "standard", emissive: "#1DA1F2", emissiveIntensity: "0.75" }}
+								material = { this.props.location === "TimesSquare" || this.props.location === "Rio" ? { opacity: 0.99, shader: "standard", emissive: "#1DA1F2", emissiveIntensity: "0.75" } : { opacity: 0.99 } }
 								rotation = { rotation }
 								position = { position }
 								scale = "3 5"
@@ -214,14 +221,16 @@ class VRScene extends React.Component {
 							</Entity>
 						))
 					}
-					<Entity primitive = "a-box" color = "red" material = {{ shader: "html", target: "#TweetOne" }}></Entity>
-					{/* <a-sound src = "#ambience" autoplay = "true" position = "0 1.6 0" loop volume = { this.state.audibleSound ? ".3" : "0" }></a-sound> */}
+					{ /* <a-sound src = "#ambience" autoplay = "true" position = "0 1.6 0" loop volume = { this.state.audibleSound ? ".3" : "0" }></a-sound> */ }
 				</Scene>
 				<div style = {{ zIndex: 1, position: "absolute", bottom: 0, backgroundColor: "silver", borderTopRightRadius: "25px" }}>
 					<IoMdArrowBack size = "5em" style = {{ cursor: "pointer" }}
-						onClick = { () => this.props.stop360() }
+						onClick = { () => {
+							ReactDOM.unmountComponentAtNode(document.getElementById("sceneContainer"));
+							document.getElementById("root").style.display = "inline";
+						} }
 					/>
-					{/* {
+					{ /* {
 						this.state.audibleSound ?
 							(
 								<IoMdVolumeOff
@@ -237,7 +246,7 @@ class VRScene extends React.Component {
 									size = "5em"
 								/>
 							)
-					} */}
+					} */ }
 				</div>
 			</div>
 		);

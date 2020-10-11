@@ -108,7 +108,10 @@ export default function Home() {
 									else if (cluster.properties.tweetId === 7) location = "Rio";
 									else if (cluster.properties.tweetId === 10) location = "UCF";
 
-									ReactDOM.render(<VRScene location = { location } />, document.querySelector("#sceneContainer"));
+									if (location) {
+										ReactDOM.render(<VRScene location = { location } />, document.querySelector("#sceneContainer"));
+										document.getElementById("root").style.display = "none";
+									}
 								} }
 							>
 								<img className = "markers" src = { require("../assets/logo.png") } />
