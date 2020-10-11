@@ -57,7 +57,65 @@ export default function Home() {
                 ) : null }
             </ReactMapGL>
             <div className = 'sidebar'>
-                Sidebar
+                
+                <input className= 'searchbar' type="text" placeholder="Search.."/>
+                
+                <div className= 'featuredLocationsTitle'>
+                    360° Locations
+                </div>
+                <div className='featuredLocations'>
+                    <div className= 'location'>
+                        <div className= 'locationTitle'>
+                            Times Squares, New York City
+                        </div>
+                    </div>
+                    <div className= 'location'>
+                        <div className= 'locationTitle'>
+                            Rio de Janeiro, Brazil
+                        </div>
+                    </div>
+                    <div className= 'location'>
+                        <div className= 'locationTitle'>
+                            UCF, Orlando
+                        </div>
+                    </div>
+                </div>
+
+                <div className= 'trendingHashtagsTitle'>
+                    Trending Locations
+                </div>
+                <div className= 'trendingHashtags'>
+                    <div className= 'hashtags'>
+                        <div className= 'hashtagsTitle'>
+                            Location 1
+                        </div>
+                    </div>
+                    <div className= 'hashtags'>
+                        <div className= 'hashtagsTitle'>
+                            Location 2
+                        </div>
+                    </div>
+                    <div className= 'hashtags'>
+                        <div className= 'hashtagsTitle'>
+                            Location 3
+                        </div>
+                    </div>
+                    <div className= 'hashtags'>
+                        <div className= 'hashtagsTitle'>
+                            Location 4
+                        </div>
+                    </div>
+                    <div className= 'hashtags'>
+                        <div className= 'hashtagsTitle'>
+                            Location 5
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+                
+             
             </div>
         </div>
     )
