@@ -1,22 +1,21 @@
-import 'aframe';
-import 'aframe-particle-system-component';
-import 'aframe-htmlembed-component'
-import 'aframe-html-shader'
-import 'babel-polyfill';
-import Skybox from './assets/Skyboxes/TimesSquare.jpg';
-import Ground from './assets/groundPlane.png'
-import PanelDesign from "./assets/PanelDesign/PanelDesign.png";
+import "aframe";
+import "aframe-particle-system-component";
+import "aframe-htmlembed-component";
+import "aframe-html-shader";
+import "babel-polyfill";
+import Skybox from "./assets/Skyboxes/TimesSquare.jpg";
+import Ground from "./assets/groundPlane.png";
 import TweetTexture from "./assets/sampleTweet.jpg";
 import CityAmbience from "./assets/Ambience/new-york-street-ambience.wav";
-import UrbanPanelDesign from './assets/Themes/Urban/PanelDesign.png';
-import NaturePanelDesign from './assets/Themes/Nature/PanelDesign.png';
-import BlackGoldPanelDesign from './assets/Themes/BlackGold/PanelDesign.png';
-import UrbanButtonDesign from './assets/Themes/Urban/ButtonDesign.png';
-import NatureButtonDesign from './assets/Themes/Nature/ButtonDesign.png';
-import BlackGoldButtonDesign from './assets/Themes/BlackGold/ButtonDesign.png';
-import {Entity, Scene} from 'aframe-react';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import UrbanPanelDesign from "./assets/Themes/Urban/PanelDesign.png";
+import NaturePanelDesign from "./assets/Themes/Nature/PanelDesign.png";
+import BlackGoldPanelDesign from "./assets/Themes/BlackGold/PanelDesign.png";
+import UrbanButtonDesign from "./assets/Themes/Urban/ButtonDesign.png";
+import NatureButtonDesign from "./assets/Themes/Nature/ButtonDesign.png";
+import BlackGoldButtonDesign from "./assets/Themes/BlackGold/ButtonDesign.png";
+import { Entity, Scene } from "aframe-react";
+import React from "react";
+import ReactDOM from "react-dom";
 
 { /* Set Panels rotation and position*/ }
 let radius = 10;
@@ -51,25 +50,9 @@ for (let i = 0; i < 8; i++) {
 
 	let orientation = {};
 
-	/*
-	 * orientation.position = `${xPos} -2 ${zPos}`
-	 * orientation.rotation = `-10 ${rotation} 0`
-	 * positions.push(orientation)
-	 *
-	 * orientation = {}
-	 */
-
 	orientation.position = `${xPos} 3 ${zPos}`;
 	orientation.rotation = `0 ${rotation} 0`;
 	tweetPositions.push(orientation);
-	/*
-	 *
-	 * orientation = {}
-	 *
-	 * orientation.position = `${xPos} 8 ${zPos}`
-	 * orientation.rotation = `-10 ${rotation} 0`
-	 * positions.push(orientation)
-	 */
 
 	degrees += Math.PI / 4;
 	rotation -= 45;
@@ -90,7 +73,7 @@ class VRScene extends React.Component {
 						<img id = "skyTexture" src = { Skybox } />
 						<img id = "groundTexture" src = { Ground } />
 						<img id = "tweetTexture" src = { TweetTexture } />
-						<img id = "panelTexture" src = { PanelDesign } />
+						<img id = "panelTexture" src = { UrbanPanelDesign } />
 						<audio id = "ambience" src = { CityAmbience } />
 					</a-assets>
 					<Entity
