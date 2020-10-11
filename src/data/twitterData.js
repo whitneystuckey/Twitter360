@@ -5,7 +5,7 @@ export const twitterData = [
     lat: 35.6897,
     long: 139.6922,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1315222285293252609",
     id: 1
   },
   {
@@ -14,7 +14,7 @@ export const twitterData = [
     lat: -6.2146,
     long: 106.8451,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314959185839226880",
     id: 2
   },
   {
@@ -23,7 +23,7 @@ export const twitterData = [
     lat: 28.66,
     long: 77.23,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1315213292634165248",
     id: 3
   },
   {
@@ -32,7 +32,7 @@ export const twitterData = [
     lat: 18.9667,
     long: 72.8333,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314208479549124610",
     id: 4
   },
   {
@@ -41,7 +41,7 @@ export const twitterData = [
     lat: 14.5958,
     long: 120.9772,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1315227894008836096",
     id: 5
   },
   {
@@ -50,7 +50,7 @@ export const twitterData = [
     lat: 31.1667,
     long: 121.4667,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314186444320043008",
     id: 6
   },
   {
@@ -68,7 +68,7 @@ export const twitterData = [
     lat: 37.5833,
     long: 127,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314241676047724546",
     id: 8
   },
   {
@@ -77,7 +77,7 @@ export const twitterData = [
     lat: 19.4333,
     long: -99.1333,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314813894746148864",
     id: 9
   },
   {
@@ -86,7 +86,7 @@ export const twitterData = [
     lat: 28.603586,
     long: -81.199454,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314933111029993473",
     id: 10
   },
   {
@@ -95,7 +95,7 @@ export const twitterData = [
     lat: 39.905,
     long: 116.3914,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1314145440078725120",
     id: 11
   },
   {
@@ -104,7 +104,7 @@ export const twitterData = [
     lat: 30.0561,
     long: 31.2394,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1315224925033168896",
     id: 12
   },
   {
@@ -122,7 +122,7 @@ export const twitterData = [
     lat: 22.5411,
     long: 88.3378,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1313881005179064320",
     id: 14
   },
   {
@@ -131,7 +131,7 @@ export const twitterData = [
     lat: 55.7558,
     long: 37.6178,
     total: 37977000,
-    tweet: "1092247574336163840",
+    tweet: "1315062850218610688",
     id: 15
   },
 ]

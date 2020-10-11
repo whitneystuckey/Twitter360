@@ -78,6 +78,7 @@
   background-color: black;
   height: auto;
   display: flex;
+  margin-bottom: 5%;
 }
 
 .locationTitle {
@@ -90,8 +91,7 @@
 .trendingHashtagsTitle {
   text-align: left;
   color: white;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 35%;
 }
 
 .trendingHashtags {
@@ -99,11 +99,13 @@
   flex-direction: column;
   height: 200px;
   justify-content: space-between;
+  margin-top: 3%;
 }
 
 .hashtags {
   flex: 0.19;
   border-radius: 3px;
+  margin-bottom: 12px;
   background-color: black;
   height: auto;
   display: flex;

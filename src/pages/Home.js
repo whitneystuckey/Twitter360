@@ -13,7 +13,7 @@ export default function Home() {
     const [selectedTweet, setSelectedTweet] = useState(null);
 
     const [viewport, setViewport] = useState({
-        width: '80vw',
+        width: '79vw',
         height: '100vh',
         latitude: 40.616365,
         longitude: -0.08,
@@ -160,7 +160,7 @@ export default function Home() {
                 <div className= 'trendingHashtags'>
                     <div className= 'hashtags'>
                         <a href="/divclick" className='hashtagsTitle'>
-                            Tokio, Japan
+                            Tokyo, Japan
                         </a>
                     </div>
                     <div className= 'hashtags'>
