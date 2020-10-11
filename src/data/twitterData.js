@@ -55,15 +55,15 @@ export const twitterData = [
   },
   {
     country: "Brazil",
-    city: "São Paulo",
-    lat: -23.5504,
-    long: -46.6339,
+    city: "Rio",
+    lat: -22.951669,
+    long: -43.210541,
     total: 37977000,
     tweet: "1092247574336163840",
     id: 7
   },
   {
-    country: "Korea, South",
+    country: "South Korea",
     city: "Seoul",
     lat: 37.5833,
     long: 127,
@@ -81,10 +81,10 @@ export const twitterData = [
     id: 9
   },
   {
-    country: "China",
-    city: "Guangzhou",
-    lat: 23.1288,
-    long: 113.259,
+    country: "United States",
+    city: "Orlando",
+    lat: 28.603586,
+    long: -81.199454,
     total: 37977000,
     tweet: "1092247574336163840",
     id: 10

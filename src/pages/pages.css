@@ -24,14 +24,24 @@
   padding-right: 10px;
 }
 
+.clusterMarker {
+  color: #fff;
+  background: #1978c8;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .markers {
   height: 60px;
   width: 60px;
 }
 
 .markerBtn {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
+  background: none;
+  border: none;
 }
 
 .searchbar {

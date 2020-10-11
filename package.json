@@ -13,7 +13,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-twitter-embed": "^3.0.3",
-    "twit": "^2.2.11"
+    "supercluster": "^7.1.0",
+    "twit": "^2.2.11",
+    "use-supercluster": "^0.2.9"
   },
   "scripts": {
     "start": "react-scripts start",

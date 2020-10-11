@@ -1,19 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './pages.css';
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup, FlyToInterpolator } from "react-map-gl";
 import { twitterData } from '../data/twitterData';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
+import useSupercluster from "use-supercluster";
 
 export default function Home() {
+
+    const [selectedTweet, setSelectedTweet] = useState(null);
+
     const [viewport, setViewport] = useState({
         width: '80vw',
         height: '100vh',
-        latitude: 43.616365,
-        longitude: -0.001,
+        latitude: 40.616365,
+        longitude: -0.08,
         zoom: 1.5
     });
 
-    const [selectedTweet, setSelectedTweet] = useState(null);
+    useEffect(() => {
+        const listener = e => {
+            if (e.key === 'Escape')
+                setSelectedTweet(null);
+        };
+        window.addEventListener('keydown', listener);
+
+        return () => {
+            window.removeEventListener('keydown', listener);
+        }
+    }, []);
+
+    const mapRef = useRef();
+    const points = twitterData.map(hotspot => ({                      
+        type: "Feature",
+        properties: {
+            cluster: false,
+            tweetId: hotspot.id,
+            tweet: hotspot.tweet,
+            hotspot: hotspot
+        },
+        geometry: { 
+            type: "Point", 
+            coordinates: [
+                parseFloat(hotspot.long), 
+                parseFloat(hotspot.lat)
+            ]
+        }                                                
+    }));  
+
+    const bounds = mapRef.current 
+        ? mapRef.current
+            .getMap()
+            .getBounds()
+            .toArray()
+            .flat() 
+        : null;
+    
+    const { clusters } = useSupercluster({
+        points,
+        zoom: viewport.zoom,
+        bounds,
+        options: { radius: 75, maxZoom: 20 }
+    });
 
     return (
         <div>
@@ -24,37 +71,56 @@ export default function Home() {
                 onViewportChange={ viewport => {
                     setViewport(viewport);
                 }}
+                ref = { mapRef }
             >
-                { twitterData.map((hotspot) => (
-                    <Marker 
-                        key={ hotspot.id } 
-                        latitude = { hotspot.lat } 
-                        longitude = { hotspot.long }
-                    >
+                { clusters.map(cluster => {
+                    const [longitude, latitude] = cluster.geometry.coordinates;
+                    const { cluster: isCluster, point_count: pointCount } = cluster.properties;
+
+                    if (isCluster) {
+                        return (
+                            <Marker key = { cluster.id } latitude = { latitude } longitude = { longitude }>
+                                <div className = "clusterMarker"> { pointCount } </div>
+                            </Marker>
+                        )
+                    }
+
+                    return(
+                        <Marker 
+                            key={ cluster.properties.tweetId } 
+                            latitude = { latitude } 
+                            longitude = { longitude }
+                        >
                         <button 
                             className="markerBtn" 
                             onClick={ e => {
                                 e.preventDefault();
-                                setSelectedTweet(hotspot);
+                                setSelectedTweet(cluster);
                             }}
                         >
-                            <img className="markers" src={require("../assets/logo.png")}/>
+                            <img className="markers" src={ require("../assets/logo.png") }/>
                         </button>
                     </Marker>
-                ))}
+                    );
+                })}
+
                 { selectedTweet ? (
                     <Popup 
-                        latitude = { selectedTweet.lat } 
-                        longitude = { selectedTweet.long }
+                        latitude = { selectedTweet.geometry.coordinates[1] } 
+                        longitude = { selectedTweet.geometry.coordinates[0] }
+                        onClose = {() => {
+                            setSelectedTweet(null);
+                        }}
                     >
                         <div>
                             <TwitterTweetEmbed
-                                tweetId = { selectedTweet.tweet }
+                                tweetId = { selectedTweet.properties.tweet }
                             />
                         </div>
 
                     </Popup>
                 ) : null }
+
             </ReactMapGL>
             <div className = 'sidebar'>
                 
