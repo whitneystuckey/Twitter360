@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './pages.css';
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { twitterData } from '../data/twitterData';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 export default function Home() {
     const [viewport, setViewport] = useState({
         width: '80vw',
         height: '100vh',
-        latitude: 28.6011,
-        longitude: -81.2004,
-        zoom: 3
+        latitude: 43.616365,
+        longitude: -0.001,
+        zoom: 1.5
     });
+
+    const [selectedTweet, setSelectedTweet] = useState(null);
 
     return (
         <div>
@@ -22,17 +25,36 @@ export default function Home() {
                     setViewport(viewport);
                 }}
             >
-                { twitterData.map((hotspots) => (
+                { twitterData.map((hotspot) => (
                     <Marker 
-                        key={ hotspots.id } 
-                        latitude = { hotspots.lat } 
-                        longitude = { hotspots.long }
+                        key={ hotspot.id } 
+                        latitude = { hotspot.lat } 
+                        longitude = { hotspot.long }
                     >
-                        <button className="markerBtn">
+                        <button 
+                            className="markerBtn" 
+                            onClick={ e => {
+                                e.preventDefault();
+                                setSelectedTweet(hotspot);
+                            }}
+                        >
                             <img className="markers" src={require("../assets/logo.png")}/>
                         </button>
                     </Marker>
                 ))}
+                { selectedTweet ? (
+                    <Popup 
+                        latitude = { selectedTweet.lat } 
+                        longitude = { selectedTweet.long }
+                    >
+                        <div>
+                            <TwitterTweetEmbed
+                                tweetId = { selectedTweet.tweet }
+                            />
+                        </div>
+
+                    </Popup>
+                ) : null }
             </ReactMapGL>
             <div className = 'sidebar'>
                 Sidebar

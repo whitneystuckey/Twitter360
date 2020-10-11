@@ -12,6 +12,7 @@
     "react-map-gl": "^5.2.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-twitter-embed": "^3.0.3",
     "twit": "^2.2.11"
   },
   "scripts": {
