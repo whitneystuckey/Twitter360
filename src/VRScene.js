@@ -5,13 +5,16 @@ import 'aframe-html-shader'
 import 'babel-polyfill';
 import Skybox from './assets/Skyboxes/TimesSquare.jpg';
 import Ground from './assets/groundPlane.png'
-import PanelDesign from './assets/PanelDesign/PanelDesign.png';
+import UrbanPanelDesign from './assets/Themes/Urban/PanelDesign.png';
+import NaturePanelDesign from './assets/Themes/Nature/PanelDesign.png';
+import BlackGoldPanelDesign from './assets/Themes/BlackGold/PanelDesign.png';
+import UrbanButtonDesign from './assets/Themes/Urban/ButtonDesign.png';
+import NatureButtonDesign from './assets/Themes/Nature/ButtonDesign.png';
+import BlackGoldButtonDesign from './assets/Themes/BlackGold/ButtonDesign.png';
 import TweetTexture from './assets/sampleTweet.jpg';
 import {Entity, Scene} from 'aframe-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-{/**/}
 
 {/*Set Panels rotation and position*/}
 let radius = 10;
@@ -46,21 +49,9 @@ for (let i = 0; i < 8; i++) {
 
     let orientation = {}
 
-    // orientation.position = `${xPos} -2 ${zPos}`
-    // orientation.rotation = `-10 ${rotation} 0`
-    // positions.push(orientation)
-    //
-    // orientation = {}
-
     orientation.position = `${xPos} 3 ${zPos}`
     orientation.rotation = `0 ${rotation} 0`
     tweetPositions.push(orientation)
-    //
-    // orientation = {}
-    //
-    // orientation.position = `${xPos} 8 ${zPos}`
-    // orientation.rotation = `-10 ${rotation} 0`
-    // positions.push(orientation)
 
     degrees += Math.PI/4
     rotation -= 45
@@ -81,8 +72,8 @@ class VRScene extends React.Component {
         <a-assets>
           <img id="skyTexture" src={Skybox}/>
           <img id="groundTexture" src={Ground}/>
-		      <img id="tweetTexture" src={TweetTexture}/>
-          <img id="panelTexture" src={PanelDesign}/>
+			    <img id="tweetTexture" src={TweetTexture}/>
+          <img id="panelTexture" src={UrbanPanelDesign}/>
         </a-assets>
         <Entity
           primitive="a-plane"
@@ -110,7 +101,6 @@ class VRScene extends React.Component {
         {/*Tweet Panels:
            Tweet Scale: 4.2 2.2
            Panel Scale: 5.0 3.0*/}
-
 		{
 			tweetPositions.map(({rotation, position}) => (
 				<Entity
@@ -147,7 +137,5 @@ class VRScene extends React.Component {
     );
   }
 }
-
-
 
 ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer'));
