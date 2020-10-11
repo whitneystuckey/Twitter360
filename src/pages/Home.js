@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './pages.css';
 import ReactMapGL, { Marker } from "react-map-gl";
 import { twitterData } from '../data/twitterData';
+import picture from "../assets/201.jpg" 
+import pictureNY from "../assets/NY.jpg"
+import pictureRio from "../assets/Rio.jpg"
 
 export default function Home() {
     const [viewport, setViewport] = useState({
@@ -34,6 +37,7 @@ export default function Home() {
                     </Marker>
                 ))}
             </ReactMapGL>
+
             <div className = 'sidebar'>
                 
                 <input className= 'searchbar' type="text" placeholder="Search.."/>
@@ -43,19 +47,22 @@ export default function Home() {
                 </div>
                 <div className='featuredLocations'>
                     <div className= 'location'>
-                        <div className= 'locationTitle'>
+                        <a href="/divclick" className='locationTitle'>
+                            <img src= {pictureNY}/>
                             Times Squares, New York City
-                        </div>
+                        </a>   
                     </div>
                     <div className= 'location'>
-                        <div className= 'locationTitle'>
-                            Rio de Janeiro, Brazil
-                        </div>
+                        <a href="/divclick" className='locationTitle'>
+                                <img src= {pictureRio}/>
+                                Rio de Janeiro, Brazil
+                        </a>
                     </div>
                     <div className= 'location'>
-                        <div className= 'locationTitle'>
-                            UCF, Orlando
-                        </div>
+                        <a href="/divclick" className='locationTitle'>
+                                <img src= {picture}/>
+                                UCF, Orlando
+                        </a>
                     </div>
                 </div>
 
@@ -64,37 +71,34 @@ export default function Home() {
                 </div>
                 <div className= 'trendingHashtags'>
                     <div className= 'hashtags'>
-                        <div className= 'hashtagsTitle'>
-                            Location 1
-                        </div>
+                        <a href="/divclick" className='hashtagsTitle'>
+                            Tokio, Japan
+                        </a>
                     </div>
                     <div className= 'hashtags'>
-                        <div className= 'hashtagsTitle'>
-                            Location 2
-                        </div>
+                        <a href="/divclick" className='hashtagsTitle'>
+                            Cairo, Egypt
+                        </a>
                     </div>
                     <div className= 'hashtags'>
-                        <div className= 'hashtagsTitle'>
-                            Location 3
-                        </div>
+                        <a href="/divclick" className='hashtagsTitle'>
+                            Delhi, India
+                        </a>
                     </div>
                     <div className= 'hashtags'>
-                        <div className= 'hashtagsTitle'>
-                            Location 4
-                        </div>
+                        <a href="/divclick" className='hashtagsTitle'>
+                            Moscow, Russia
+                        </a>
                     </div>
                     <div className= 'hashtags'>
-                        <div className= 'hashtagsTitle'>
-                            Location 5
-                        </div>
-                    </div>
-                    
+                        <a href="/divclick" className='hashtagsTitle'>
+                            Manila, Philippines
+                        </a>
+                    </div>   
                 </div>
-
-                
-                
              
             </div>
+
         </div>
     )
 }
