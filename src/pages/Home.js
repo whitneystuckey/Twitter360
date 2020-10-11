@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "./pages.css";
 import ReactMapGL, { Marker, Popup, FlyToInterpolator } from "react-map-gl";
 import { twitterData } from "../data/twitterData";
+import picture from "../assets/201.jpg";
+import pictureNY from "../assets/NY.jpg";
+import pictureRio from "../assets/Rio.jpg";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import useSupercluster from "use-supercluster";
 import ReactDOM from "react-dom";
@@ -64,10 +67,6 @@ export default function Home() {
 		options: { radius: 75, maxZoom: 20 }
 	});
 
-	function remove360(ref) {
-		ReactDOM.unmountComponentAtNode(document.getElementById("sceneContainer"));
-	}
-
 	return (
 		<div>
 			<ReactMapGL
@@ -104,13 +103,12 @@ export default function Home() {
 									setSelectedTweet(cluster);
 
 									let location = "";
-									let ref = React.createRef();
 
 									if (cluster.properties.tweetId === 13) location = "TimesSquare";
 									else if (cluster.properties.tweetId === 7) location = "Rio";
 									else if (cluster.properties.tweetId === 10) location = "UCF";
 
-									ReactDOM.render(<VRScene ref = { c => (ref = c) } id = "vrscene" location = { location } stop360 = { () => remove360(ref) } />, document.querySelector("#sceneContainer"));
+									ReactDOM.render(<VRScene location = { location } />, document.querySelector("#sceneContainer"));
 								} }
 							>
 								<img className = "markers" src = { require("../assets/logo.png") } />
@@ -137,6 +135,7 @@ export default function Home() {
 				) : null }
 
 			</ReactMapGL>
+
 			<div className = 'sidebar'>
 
 				<input className = 'searchbar' type = "text" placeholder = "Search.." />
@@ -146,19 +145,22 @@ export default function Home() {
 				</div>
 				<div className = 'featuredLocations'>
 					<div className = 'location'>
-						<div className = 'locationTitle'>
+						<a href = "/divclick" className = 'locationTitle'>
+							<img src = { pictureNY } />
                             Times Squares, New York City
-						</div>
+						</a>
 					</div>
 					<div className = 'location'>
-						<div className = 'locationTitle'>
-                            Rio de Janeiro, Brazil
-						</div>
+						<a href = "/divclick" className = 'locationTitle'>
+							<img src = { pictureRio } />
+                                Rio de Janeiro, Brazil
+						</a>
 					</div>
 					<div className = 'location'>
-						<div className = 'locationTitle'>
-                            UCF, Orlando
-						</div>
+						<a href = "/divclick" className = 'locationTitle'>
+							<img src = { picture } />
+                                UCF, Orlando
+						</a>
 					</div>
 				</div>
 
@@ -167,34 +169,34 @@ export default function Home() {
 				</div>
 				<div className = 'trendingHashtags'>
 					<div className = 'hashtags'>
-						<div className = 'hashtagsTitle'>
-                            Location 1
-						</div>
+						<a href = "/divclick" className = 'hashtagsTitle'>
+                            Tokio, Japan
+						</a>
 					</div>
 					<div className = 'hashtags'>
-						<div className = 'hashtagsTitle'>
-                            Location 2
-						</div>
+						<a href = "/divclick" className = 'hashtagsTitle'>
+                            Cairo, Egypt
+						</a>
 					</div>
 					<div className = 'hashtags'>
-						<div className = 'hashtagsTitle'>
-                            Location 3
-						</div>
+						<a href = "/divclick" className = 'hashtagsTitle'>
+                            Delhi, India
+						</a>
 					</div>
 					<div className = 'hashtags'>
-						<div className = 'hashtagsTitle'>
-                            Location 4
-						</div>
+						<a href = "/divclick" className = 'hashtagsTitle'>
+                            Moscow, Russia
+						</a>
 					</div>
 					<div className = 'hashtags'>
-						<div className = 'hashtagsTitle'>
-                            Location 5
-						</div>
+						<a href = "/divclick" className = 'hashtagsTitle'>
+                            Manila, Philippines
+						</a>
 					</div>
-
 				</div>
 
 			</div>
+
 		</div>
 	);
 }
